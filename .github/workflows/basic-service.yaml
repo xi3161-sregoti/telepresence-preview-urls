@@ -36,4 +36,4 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: 3.7.100.88:5000/xlr8s/basic-service:${{ steps.extract_branch.outputs.branch }}
+        tags: sharadregoti/basic-service:${{ steps.extract_branch.outputs.branch }}
