@@ -37,3 +37,4 @@ jobs:
       with:
         push: true
         tags: sharadregoti/basic-service:latest
+        args: -f basic-service/Dockerfile
