@@ -30,10 +30,10 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch    
-      
+      # ${{ steps.extract_branch.outputs.branch }}
     -
       name: Build and push
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: sharadregoti/basic-service:${{ steps.extract_branch.outputs.branch }}
+        tags: sharadregoti/basic-service:latest
