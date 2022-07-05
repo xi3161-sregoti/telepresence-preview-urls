@@ -44,6 +44,12 @@ jobs:
         tags: sharadregoti/basic-service:latest
         file: ./basic-service/Dockerfile
 
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v1
+      with:
+        message: "This is url https://google.com"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     # - name: 'Deploy'
     #   uses: 'deliverybot/helm@v1'
     #   with:
