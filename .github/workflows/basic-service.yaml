@@ -38,7 +38,7 @@ jobs:
         push: true
         context: ./basic-service
         tags: sharadregoti/basic-service:latest
-        file: basic-service/Dockerfile
+        file: ./Dockerfile
 
     # - name: 'Deploy'
     #   uses: 'deliverybot/helm@v1'
