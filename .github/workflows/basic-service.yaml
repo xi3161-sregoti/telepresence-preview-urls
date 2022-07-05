@@ -14,6 +14,10 @@ jobs:
 
     steps:
     -
+      name: Checkout
+      uses: actions/checkout@v3
+
+    -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     -
@@ -38,7 +42,7 @@ jobs:
         push: true
         context: ./basic-service
         tags: sharadregoti/basic-service:latest
-        file: ./Dockerfile
+        file: ./basic-service/Dockerfile
 
     # - name: 'Deploy'
     #   uses: 'deliverybot/helm@v1'
