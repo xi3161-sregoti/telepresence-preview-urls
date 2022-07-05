@@ -44,7 +44,7 @@ jobs:
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1
       with:
-        message: "Application can be accessed at this url: http://${{ github.event.number }}.-pr3.7.100.88.sslip.io:4080"
+        message: "Application can be accessed at this url: http://${{ github.event.number }}-pr.3.7.100.88.sslip.io:4080"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy
