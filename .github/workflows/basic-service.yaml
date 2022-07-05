@@ -5,10 +5,12 @@ on:
       - 'basic-service/**'  
     branches:
       - "*"
+    types:
+      - opened
+      - edited
 
 jobs:
   deploy:
-    if: github.event.pull_request.edited == true
     runs-on: ubuntu-latest
 
     steps:
