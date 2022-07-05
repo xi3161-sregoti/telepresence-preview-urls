@@ -30,24 +30,23 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch    
-      # ${{ steps.extract_branch.outputs.branch }}
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v5.4
+
     -
       name: Build and push
       uses: docker/build-push-action@v3
       with:
         push: true
         context: ./basic-service
-        tags: sharadregoti/basic-service:latest
+        tags: sharadregoti/basic-service:${{steps.branch-name.outputs.current_branch}}
         file: ./basic-service/Dockerfile
 
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1
       with:
-        message: "This is url https://google.com"
+        message: "Application can be accessed at this url: http://${{steps.branch-name.outputs.current_branch}}3.7.100.88.sslip.io:4080"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # - name: 'Deploy'
