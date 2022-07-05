@@ -36,7 +36,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        context: "{{defaultContext}}:basic-service"
+        context: ./basic-service
         tags: sharadregoti/basic-service:latest
         file: basic-service/Dockerfile
 
