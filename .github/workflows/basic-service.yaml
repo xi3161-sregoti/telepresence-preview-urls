@@ -36,5 +36,24 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
+        context: basic-service/
         tags: sharadregoti/basic-service:latest
         file: basic-service/Dockerfile
+
+    # - name: 'Deploy'
+    #   uses: 'deliverybot/helm@v1'
+    #   with:
+    #     release: 'basic-service'
+    #     namespace: 'default'
+    #     chart: 'app'
+    #     token: '${{ github.token }}'
+    #     values: |
+    #       branch_name: foobar
+    #   env:
+    #     KUBECONFIG_FILE: '${{ secrets.KUBE_CONFIG }}'
+
+    # - uses: actions-hub/kubectl@master
+    #   env:
+    #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+    #   with:
+    #     args: apply -f basic-service/deployment.yaml
