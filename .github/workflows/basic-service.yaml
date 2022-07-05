@@ -40,17 +40,17 @@ jobs:
       with:
         push: true
         context: ./basic-service
-        tags: sharadregoti/basic-service:${{steps.branch-name.outputs.current_branch}}
+        tags: sharadregoti/basic-service:${{ github.event.number }}
         file: ./basic-service/Dockerfile
 
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1
       with:
-        message: "Application can be accessed at this url: http://${{steps.branch-name.outputs.current_branch}}.3.7.100.88.sslip.io:4080"
+        message: "Application can be accessed at this url: http://${{ github.event.number }}.3.7.100.88.sslip.io:4080"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm upgrade ${{steps.branch-name.outputs.current_branch}} ./basic-service/deployment/basic-service --install --wait --atomic --set=branch_name=${{steps.branch-name.outputs.current_branch}}
+        exec: helm upgrade ${{ github.event.number }} ./basic-service/deployment/basic-service --install --wait --atomic --set=branch_name=${{ github.event.number }}
         kubeconfig: '${{ secrets.KUBE_CONFIG }}'
