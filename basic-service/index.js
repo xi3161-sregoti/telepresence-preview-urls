@@ -11,7 +11,7 @@ const delay = process.env.DELAY || 100
 app.get("/add/:num1/:num2", (req, res) => {
   const num1 = Number(req.params.num1);
   const num2 = Number(req.params.num2);
-  const response = { value: num1 - num2, foo: 'bar' };
+  const response = { value: num1 - num2, foo: 'car' };
   res.status(200).send(JSON.stringify(response));
 });
 
