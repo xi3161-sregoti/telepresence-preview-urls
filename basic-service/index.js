@@ -25,7 +25,7 @@ app.post("/double", async (req, res) => {
   try {
     // Fire request and get response
     const response = await axios.get(url);
-    // Send the response to the client
+    // Send the response to the client  hello
     res.status(200).send(JSON.stringify(response.data));
   } catch (e) {
     res.status(500).send(JSON.stringify({ error: "an error occured" }));
