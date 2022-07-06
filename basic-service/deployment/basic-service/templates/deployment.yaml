@@ -1,0 +1,56 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: basic-service-{{.Values.branch_name}}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: "{{.Values.branch_name}}.3.7.100.88.sslip.io"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: basic-service-{{.Values.branch_name}}
+            port:
+              number: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: basic-service-{{.Values.branch_name}}
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: basic-service-{{.Values.branch_name}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basic-service-{{.Values.branch_name}}
+spec:
+  selector:
+    matchLabels:
+      app: basic-service-{{.Values.branch_name}}
+  template:
+    metadata:
+      labels:
+        app: basic-service-{{.Values.branch_name}}
+    spec:
+      containers:
+      - name: basic-service-{{.Values.branch_name}}
+        image: sharadregoti/basic-service:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

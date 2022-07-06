@@ -1,0 +1,26 @@
+name: Go
+on:
+  pull_request:
+    paths:
+      - 'basic-service/**'  
+    branches:
+      - "*"
+    types:
+      - closed
+
+jobs:
+
+  remove:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    -
+      name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Deploy
+      uses: WyriHaximus/github-action-helm3@v2
+      with:
+        exec: helm uninstall ${{ github.event.number }}-pr
+        kubeconfig: '${{ secrets.KUBE_CONFIG }}'
