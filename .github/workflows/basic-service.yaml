@@ -38,7 +38,7 @@ jobs:
       with:
         push: true
         context: ./basic-service
-        tags: sharadregoti/basic-service:${{ github.event.number }}-pr
+        tags: sharadregoti/basic-service:${{ github.event.number }}-pr-${{ github.sha }}
         file: ./basic-service/Dockerfile
 
     - name: Comment PR
@@ -50,5 +50,5 @@ jobs:
     - name: Deploy
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm upgrade ${{ github.event.number }}-pr ./basic-service/deployment/basic-service --install --wait --atomic --set=branch_name=${{ github.event.number }}-pr
+        exec: helm upgrade ${{ github.event.number }}-pr ./basic-service/deployment/basic-service --install --wait --atomic --set=branch_name=${{ github.event.number }}-pr --set=commit_hash=${{ github.sha }}
         kubeconfig: '${{ secrets.KUBE_CONFIG }}'
