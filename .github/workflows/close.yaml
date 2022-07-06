@@ -22,5 +22,5 @@ jobs:
     - name: Deploy
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm uninstall ${{ github.event.number }}-pr ./basic-service/deployment/basic-service
+        exec: helm uninstall ${{ github.event.number }}-pr
         kubeconfig: '${{ secrets.KUBE_CONFIG }}'
