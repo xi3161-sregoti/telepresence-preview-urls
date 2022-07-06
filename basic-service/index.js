@@ -39,7 +39,7 @@ app.post("/logger", (req, res) => {
   }, delay)
 });
 
-// Console changes more changs
+// Console changes more changes
 
 var server = app.listen(8080, () => {
   console.log("app running on port:", server.address().port);
