@@ -11,7 +11,7 @@ const delay = process.env.DELAY || 100
 app.get("/add/:num1/:num2", (req, res) => {
   const num1 = Number(req.params.num1);
   const num2 = Number(req.params.num2);
-  const response = { value: num1 + num2 };
+  const response = { value: num1 - num2, foo: 'car' };
   res.status(200).send(JSON.stringify(response));
 });
 
@@ -19,7 +19,7 @@ app.post("/double", async (req, res) => {
   // Get the number from the body
   const num = Number(req.body.value);
 
-  // Generate the url
+  // Generate the url hello he
   const url = `http://${adderURL}:8080/add/${num}/${num}`
 
   try {
