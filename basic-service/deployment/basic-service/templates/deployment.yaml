@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
       - name: basic-service-{{.Values.branch_name}}
-        image: sharadregoti/basic-service:{{.Values.branch_name}}
+        image: sharadregoti/basic-service:{{.Values.branch_name}}-{{.Values.commit_hash}}
         imagePullPolicy: Always
         resources:
           limits:
